@@ -1,0 +1,11 @@
+{
+  "name": "northgrave-website",
+  "version": "1.0.0",
+  "description": "NorthGrave landing page",
+  "scripts": {
+    "start": "npx http-server -p 3000 -o"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
