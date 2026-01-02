@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import Hero from "../components/sections/Hero.astro";
+import Marquee from "../components/ui/Marquee.astro";
+import About from "../components/sections/About.astro";
+import Team from "../components/sections/Team.astro";
+import Projects from "../components/sections/Projects.astro";
+
+// Import content
+import siteData from "../../content/site.json";
+import teamData from "../../content/team.json";
+import projectsData from "../../content/projects.json";
+---
+
+<BaseLayout
+  title={siteData.meta.title}
+  description={siteData.meta.description}
+  ogImage={siteData.meta.ogImage}
+>
+  <Header />
+
+  <main>
+    <Hero
+      tagline={siteData.hero.tagline}
+      ctaText={siteData.hero.cta.text}
+      ctaHref={siteData.hero.cta.href}
+      videoSrc={siteData.hero.videoSrc}
+      fallbackImage={siteData.hero.fallbackImage}
+    />
+
+    <About
+      heading={siteData.about.heading}
+      intro={siteData.about.intro}
+      mission={siteData.about.mission}
+      values={siteData.about.values}
+    />
+
+    <Team
+      heading={teamData.heading}
+      intro={teamData.intro}
+      members={teamData.members}
+    />
+
+    <Marquee
+      items={[
+        { src: "/images/client_logos/paramount.png", alt: "Paramount" },
+        { src: "/images/client_logos/Ontario_creates.png", alt: "Ontario Creates" },
+        { src: "/images/client_logos/Playback.png", alt: "Playback" },
+        { src: "/images/client_logos/SxSW_logo.png", alt: "SXSW" },
+        { src: "/images/client_logos/canada_media_fund.png", alt: "Canada Media Fund" },
+        { src: "/images/client_logos/fantasia_film_fest.png", alt: "Fantasia Film Festival" },
+        { src: "/images/client_logos/hulu.png", alt: "Hulu" },
+        { src: "/images/client_logos/nightmares_ff.png", alt: "Nightmares Film Festival" },
+        { src: "/images/client_logos/ontario_heritage_fund.png", alt: "Ontario Heritage Fund" },
+        { src: "/images/client_logos/screamfest.png", alt: "Screamfest" },
+        { src: "/images/client_logos/starz.png", alt: "Starz" },
+        { src: "/images/client_logos/telefilm.png", alt: "Telefilm Canada" },
+        { src: "/images/client_logos/tiff.png", alt: "Toronto International Film Festival" },
+        { src: "/images/client_logos/vancouver_horror_show.png", alt: "Vancouver Horror Show" },
+      ]}
+      speed={0.4}
+    />
+
+    <Projects
+      heading={projectsData.heading}
+      intro={projectsData.intro}
+      projects={projectsData.projects}
+    />
+  </main>
+
+  <Footer />
+</BaseLayout>

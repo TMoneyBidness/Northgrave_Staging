@@ -1,0 +1,122 @@
+---
+import FlipCard from "../ui/FlipCard";
+
+interface Project {
+  id: string;
+  title: string;
+  slug: string;
+  poster: string;
+  year: string;
+  genre: string;
+  status: string;
+  logline: string;
+  isVaulted: boolean;
+  sortOrder: number;
+}
+
+interface Props {
+  heading?: string;
+  intro?: string;
+  projects?: Project[];
+}
+
+const {
+  heading = "Projects",
+  intro = "Our curated collection of genre works.",
+  projects = [],
+} = Astro.props;
+
+// Sort projects by sortOrder
+const sortedProjects = [...projects].sort((a, b) => a.sortOrder - b.sortOrder);
+---
+
+<section class="projects" id="projects">
+  <div class="projects__container">
+    <div class="projects__header">
+      <h2 class="projects__heading">{heading}</h2>
+      <p class="projects__intro">{intro}</p>
+    </div>
+
+    <div class="projects__grid">
+      {sortedProjects.map((project, index) => (
+        <div
+          class="projects__item"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <FlipCard project={project} client:visible />
+        </div>
+      ))}
+    </div>
+
+    {projects.length === 0 && (
+      <p class="projects__empty">Projects coming soon.</p>
+    )}
+  </div>
+</section>
+
+<style>
+  .projects {
+    position: relative;
+    padding: clamp(6rem, 12vh, 10rem) clamp(1rem, 4vw, 3rem);
+    background: linear-gradient(180deg, rgba(5, 5, 9, 0.98), rgba(2, 1, 5, 0.99));
+  }
+
+  .projects__container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .projects__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .projects__heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .projects__intro {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--color-text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .projects__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    justify-items: center;
+  }
+
+  .projects__item {
+    opacity: 1;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .projects__empty {
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    padding: 4rem 0;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

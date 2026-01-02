@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import VaultGate from "../components/ui/VaultGate";
+
+import projectsData from "../../content/projects.json";
+---
+
+<BaseLayout
+  title="The Vault | Northgrave Studios"
+  description="Exclusive access to Northgrave Studios project packages"
+>
+  <Header />
+
+  <main>
+    <VaultGate projects={projectsData.projects} client:load />
+  </main>
+
+  <Footer />
+</BaseLayout>

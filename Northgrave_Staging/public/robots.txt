@@ -1,0 +1,11 @@
+# Northgrave Studios Robots.txt
+
+User-agent: *
+Allow: /
+
+# Block vault and API routes from indexing
+Disallow: /vault/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://northgrave.com/sitemap.xml

@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "title": "Northgrave Studios",
+    "description": "Innovative. Quality. Genre. - A cinematic production studio creating bold, distinctive genre content.",
+    "keywords": ["film", "production", "horror", "genre", "studio", "entertainment"],
+    "ogImage": "/images/og-image.jpg"
+  },
+  "hero": {
+    "tagline": ["Innovative.", "Quality.", "Genre."],
+    "cta": {
+      "text": "Summon",
+      "href": "mailto:cheryl@northgrave.com"
+    },
+    "videoSrc": "/images/hero/Snowy_cemetary_hero_small.webm",
+    "fallbackImage": "/images/hero/hero-fallback.jpg"
+  },
+  "about": {
+    "heading": "About Northgrave",
+    "intro": "Where vision meets execution.",
+    "mission": "Northgrave Studios is dedicated to creating bold, distinctive genre content that pushes creative boundaries while maintaining the highest standards of production quality.",
+    "values": [
+      {
+        "title": "Innovative",
+        "description": "We challenge conventions and explore new storytelling territories."
+      },
+      {
+        "title": "Quality",
+        "description": "Every frame, every sound, every detail is crafted with precision."
+      },
+      {
+        "title": "Genre",
+        "description": "We embrace the power of genre to create memorable, impactful experiences."
+      }
+    ]
+  },
+  "contact": {
+    "email": "cheryl@northgrave.com",
+    "cta": "Get in Touch"
+  },
+  "navigation": {
+    "links": [
+      { "label": "About", "href": "#about" },
+      { "label": "Team", "href": "#team" },
+      { "label": "Projects", "href": "#projects" },
+      { "label": "Vault", "href": "/vault" }
+    ]
+  }
+}

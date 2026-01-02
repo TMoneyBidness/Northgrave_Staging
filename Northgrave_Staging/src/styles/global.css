@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* Northgrave Design Tokens */
+@theme {
+  /* Colors - Clean, cinematic palette */
+  --color-night: #0a0a0f;
+  --color-night-deep: #050508;
+  --color-ember: #c44536;
+  --color-ember-core: #e85d4c;
+  --color-ember-dark: #8b2e22;
+  --color-fog: rgba(180, 190, 200, 0.08);
+  --color-fog-strong: rgba(200, 210, 220, 0.15);
+  --color-text: #f0f0f0;
+  --color-text-gold: #d4c5a9;
+  --color-text-muted: rgba(240, 240, 240, 0.55);
+
+  /* Font Families - Space Grotesk for everything */
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
+
+  /* Letter Spacing */
+  --letter-spacing-cinematic: 0.15em;
+  --letter-spacing-wide: 0.25em;
+
+  /* Shadows */
+  --shadow-ember: 0 0 25px rgba(196, 69, 54, 0.3);
+  --shadow-ember-glow: 0 0 45px rgba(196, 69, 54, 0.5), 0 0 25px rgba(232, 93, 76, 0.35);
+
+  /* Animations */
+  --animate-aurora-shift: aurora-shift 28s ease-in-out infinite alternate;
+  --animate-aurora-pulse: aurora-pulse 16s ease-in-out infinite;
+  --animate-star-glimmer: star-glimmer 24s linear infinite;
+  --animate-fog-drift: fog-drift 32s linear infinite;
+  --animate-glow-pulse: glow-pulse 8s ease-in-out infinite;
+  --animate-core-flicker: core-flicker 6s ease-in-out infinite;
+  --animate-ember-float: ember-float 12s ease-in-out infinite;
+  --animate-marquee: marquee 30s linear infinite;
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-night-deep);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Accessibility: Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Film Grain Overlay */
+.film-grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-night);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-ember);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ember-core);
+}

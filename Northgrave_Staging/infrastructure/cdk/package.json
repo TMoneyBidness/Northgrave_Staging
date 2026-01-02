@@ -1,0 +1,24 @@
+{
+  "name": "northgrave-infrastructure",
+  "version": "1.0.0",
+  "description": "AWS CDK infrastructure for Northgrave Studios website",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk",
+    "synth": "cdk synth",
+    "deploy:staging": "cdk deploy NorthgraveStagingStack --require-approval never",
+    "deploy:production": "cdk deploy NorthgraveProductionStack --require-approval never",
+    "deploy:auth": "cdk deploy NorthgraveAuthStack --require-approval never",
+    "diff": "cdk diff"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.170.0",
+    "constructs": "^10.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "aws-cdk": "^2.170.0",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,44 @@
+# Build output
+dist/
+
+# Generated types
+.astro/
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# CDK
+infrastructure/cdk/node_modules/
+infrastructure/cdk/dist/
+infrastructure/cdk/cdk.out/
+
+# Lambda
+lambda/*/node_modules/
+lambda/*/dist/
+
+# Test coverage
+coverage/
+
+# Misc
+*.local

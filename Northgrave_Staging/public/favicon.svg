@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="ember" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffbe6f"/>
+      <stop offset="50%" style="stop-color:#f26f25"/>
+      <stop offset="100%" style="stop-color:#b5301c"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" fill="#050509" rx="6"/>
+  <path d="M16 4 L26 10 L26 26 L6 26 L6 10 Z" fill="#0a0610" stroke="#f26f25" stroke-width="0.5" opacity="0.8"/>
+  <path d="M16 6 L22 10 L22 14 L16 10 L10 14 L10 10 Z" fill="url(#ember)" opacity="0.9"/>
+  <ellipse cx="16" cy="10" rx="3" ry="2" fill="#ffbe6f" opacity="0.6">
+    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+  </ellipse>
+</svg>

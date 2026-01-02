@@ -1,0 +1,351 @@
+---
+interface Props {
+  tagline?: string[];
+  videoSrc?: string;
+  fallbackImage?: string;
+}
+
+const {
+  tagline = ["Innovative.", "Quality.", "Genre."],
+  videoSrc,
+  fallbackImage,
+} = Astro.props;
+
+const hasVideo = Boolean(videoSrc);
+---
+
+<section class="hero" id="hero">
+  <!-- Background Stage (Monolith Scene) -->
+  <div class="hero__stage">
+    {hasVideo ? (
+      <video
+        class="hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster={fallbackImage}
+      >
+        <source src={videoSrc} type="video/webm" />
+      </video>
+    ) : (
+      <>
+        <div class="stage__sky"></div>
+        <div class="stage__stars"></div>
+        <div class="stage__aurora"></div>
+        <div class="stage__monolith"></div>
+        <div class="stage__glow"></div>
+        <div class="stage__ember"></div>
+        <div class="stage__ground"></div>
+        <div class="stage__fog stage__fog--near"></div>
+        <div class="stage__fog stage__fog--far"></div>
+      </>
+    )}
+  </div>
+
+  <!-- Hero Content -->
+  <div class="hero__content">
+    <h1 class="hero__tagline">
+      {tagline.map((word, index) => (
+        <span class="hero__tagline-word" style={`animation-delay: ${index * 0.2}s`}>
+          {word}
+        </span>
+      ))}
+    </h1>
+  </div>
+
+  <div class="hero__scroll-indicator" aria-hidden="true">
+    <span class="hero__scroll-text">Scroll</span>
+    <svg class="hero__scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path d="M12 5v14M5 12l7 7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+    .hero__tagline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35em;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0.9rem 1.2rem;
+      border-radius: 0.9rem;
+      background: color-mix(in srgb, var(--color-night) 78%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      box-shadow: 0 20px 60px color-mix(in srgb, var(--color-night-deep) 70%, transparent);
+      max-width: min(92vw, 920px);
+      margin: 0 auto;
+    }
+
+    @supports not (background: color-mix(in srgb, black 50%, white)) {
+      .hero__tagline {
+        background: rgba(10, 10, 15, 0.78);
+        border: 1px solid rgba(240, 240, 240, 0.1);
+        box-shadow: 0 20px 60px rgba(5, 5, 8, 0.7);
+      }
+    }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Stage Background */
+  .hero__stage {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    isolation: isolate;
+    background: var(--color-night-deep);
+  }
+
+  .stage__sky {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(12, 10, 24, 0.95) 0%, rgba(4, 3, 9, 0.8) 55%, rgba(2, 1, 5, 0.95) 100%);
+    opacity: 0.9;
+  }
+
+  .stage__stars {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 0);
+    background-size: 120px 120px;
+    opacity: 0.45;
+    animation: star-glimmer 24s linear infinite;
+  }
+
+  .stage__aurora {
+    position: absolute;
+    inset: 8% 25% 40% 25%;
+    background: radial-gradient(circle, rgba(225, 132, 58, 0.4) 0%, rgba(124, 50, 23, 0.22) 45%, transparent 75%);
+    filter: blur(22px);
+    opacity: 0.8;
+    animation: aurora-pulse 16s ease-in-out infinite;
+  }
+
+  .stage__monolith {
+    position: absolute;
+    bottom: 16%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(220px, 25vw, 320px);
+    height: clamp(380px, 42vw, 560px);
+    background:
+      linear-gradient(180deg, rgba(22, 18, 28, 0.1), rgba(0, 0, 0, 0.92)),
+      linear-gradient(110deg, rgba(180, 172, 160, 0.12), transparent 55%),
+      linear-gradient(250deg, rgba(160, 152, 140, 0.12), transparent 60%);
+    border-radius: 160px 160px 40px 40px;
+    overflow: hidden;
+    box-shadow: inset 0 -40px 120px rgba(0, 0, 0, 0.92), 0 45px 120px rgba(0, 0, 0, 0.78);
+  }
+
+  .stage__monolith::before {
+    content: "";
+    position: absolute;
+    inset: 12% 18% 8% 18%;
+    background: radial-gradient(
+      circle at 50% 10%,
+      rgba(255, 190, 111, 0.85),
+      rgba(242, 111, 37, 0.8) 32%,
+      rgba(33, 9, 2, 0.92) 55%,
+      rgba(0, 0, 0, 0.98) 65%
+    );
+    filter: blur(2px);
+    clip-path: polygon(50% 0%, 88% 18%, 88% 100%, 12% 100%, 12% 18%);
+    animation: core-flicker 6s ease-in-out infinite;
+  }
+
+  .stage__monolith::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(12, 7, 9, 0.15), rgba(0, 0, 0, 0.85));
+    mix-blend-mode: multiply;
+  }
+
+  .stage__glow {
+    position: absolute;
+    bottom: 22%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(320px, 38vw, 520px);
+    height: clamp(140px, 20vw, 220px);
+    background: radial-gradient(circle at 50% 100%, rgba(242, 111, 37, 0.55), transparent 68%);
+    filter: blur(48px);
+    opacity: 0.65;
+    animation: glow-pulse 8s ease-in-out infinite;
+  }
+
+  .stage__ember {
+    position: absolute;
+    bottom: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(120px, 15vw, 200px);
+    height: clamp(70px, 12vw, 140px);
+    background: radial-gradient(
+      circle,
+      rgba(255, 190, 111, 0.65) 0%,
+      rgba(242, 111, 37, 0.5) 45%,
+      rgba(116, 34, 6, 0.1) 75%,
+      transparent 85%
+    );
+    filter: blur(24px);
+    animation: ember-float 12s ease-in-out infinite;
+  }
+
+  .stage__ground {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 38%;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(242, 111, 37, 0.28), transparent 65%),
+      radial-gradient(circle at 20% 65%, rgba(36, 21, 9, 0.6), transparent 70%),
+      radial-gradient(circle at 80% 70%, rgba(28, 16, 6, 0.6), transparent 70%),
+      linear-gradient(180deg, rgba(17, 12, 8, 0.9) 0%, rgba(6, 4, 4, 0.95) 60%, rgba(2, 2, 3, 0.98) 100%);
+    clip-path: ellipse(70% 65% at 50% 100%);
+    overflow: hidden;
+    box-shadow: inset 0 40px 120px rgba(0, 0, 0, 0.95);
+  }
+
+  .stage__ground::before {
+    content: "";
+    position: absolute;
+    inset: 15% 18% 18% 18%;
+    background-image:
+      radial-gradient(circle at 20% 25%, rgba(95, 69, 40, 0.35) 0%, transparent 55%),
+      radial-gradient(circle at 65% 30%, rgba(82, 58, 34, 0.3) 0%, transparent 52%),
+      radial-gradient(circle at 40% 60%, rgba(77, 52, 29, 0.3) 0%, transparent 58%);
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    animation: ground-shift 26s ease-in-out infinite alternate;
+  }
+
+  .stage__fog {
+    position: absolute;
+    left: -10%;
+    width: 120%;
+    height: 45%;
+    background:
+      radial-gradient(circle at 20% 60%, var(--color-fog), transparent 75%),
+      radial-gradient(circle at 80% 55%, var(--color-fog-strong), transparent 75%),
+      radial-gradient(circle at 45% 50%, rgba(255, 255, 255, 0.08), transparent 78%);
+    filter: blur(28px);
+    opacity: 0.9;
+    mix-blend-mode: screen;
+    animation: fog-drift 32s linear infinite;
+  }
+
+  .stage__fog--near {
+    bottom: -6%;
+    animation-duration: 38s;
+    animation-direction: alternate;
+  }
+
+  .stage__fog--far {
+    bottom: 12%;
+    opacity: 0.58;
+    filter: blur(40px);
+    animation-duration: 58s;
+  }
+
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    mix-blend-mode: normal;
+  }
+
+  /* Hero Content */
+  .hero__content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .hero__tagline {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-gold);
+    text-transform: uppercase;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero__tagline-word {
+    display: inline-block;
+    opacity: 0;
+    animation: fade-in-up 0.8s ease forwards;
+  }
+
+  .hero__scroll-indicator {
+    position: absolute;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+    color: var(--color-text-muted);
+    animation: fade-in 1s ease 1.5s forwards;
+    opacity: 0;
+  }
+
+  .hero__scroll-text {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .hero__scroll-arrow {
+    width: 24px;
+    height: 24px;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .hero__tagline {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .stage__monolith {
+      width: clamp(200px, 55vw, 260px);
+      height: clamp(360px, 70vw, 420px);
+    }
+  }
+</style>

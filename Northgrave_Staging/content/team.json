@@ -1,0 +1,23 @@
+{
+  "heading": "The Team",
+  "intro": "Visionaries bringing stories to life.",
+  "members": [
+    {
+      "id": "cheryl",
+      "name": "Cheryl Meyer",
+      "title": "Founder & Creative Director",
+      "bio": "Cheryl Meyer is an award-winning Canadian writer whose work spans elevated horror and psychological thrillers with rare critical and commercial impact. She earned the 2025 Canadian Screen Award for Best Writing, was named Playback Magazine’s Ten to Watch (2024), and reached #1 on Hulu with Carved, following its Best Horror Comedy win at Nightmares Film Festival. Her dystopian thriller All the Lost Ones—starring Devon Sawa—received a theatrical release, was featured on The New York Times “What to Watch,” and won Best Writing and Best Narrative Feature at the Vancouver Horror Show, while her debut feature The Last Mark was a TIFF Industry Select. Her psychological thriller script Invalid was selected for the Wscripted Cannes Screenplay List, and her recent honors include the STARZ #TakeTheLead Award and the Loreen Arbus Foundation Fellowship—underscoring a voice that consistently delivers bold, authored genre storytelling with mainstream reach.",
+      "portrait": "/images/headshots/chery_pro_headshot.webp",
+      "socials": {
+        "email": "cheryl@northgrave.com"
+      }
+    },
+    {
+      "id": "justin",
+      "name": "Justin Harding",
+      "title": "Director, Writer & Producer",
+      "bio": "Justin Harding is a Toronto-based, multi-award-winning director, writer, and producer whose work blends visceral practical effects, original creature design, and relentless genre tension. His breakout feature Carved—expanded from the inaugural Huluween-winning short—released on Hulu and rolled out internationally on Disney+, cementing a rare short-to-feature success story. Harding has written and directed premium episodic horror for Max on Urban Legend and The Haunted Museum under Eli Roth's producing banner, served as Second-Unit Director on the studio feature Thanksgiving, and previously co-wrote/co-directed the indie feature Making Monsters for Samuel Goldwyn Films. A DGC-listed filmmaker and co-founder of Bokeh Studios, Harding has amassed 50+ festival awards and a reputation for delivering bold, cinematic horror with mainstream reach.",
+      "portrait": "/images/headshots/justin_headshot.webp"
+    }
+  ]
+}

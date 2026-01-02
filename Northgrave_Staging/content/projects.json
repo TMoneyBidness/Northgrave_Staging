@@ -1,0 +1,66 @@
+{
+  "heading": "Projects",
+  "intro": "Our curated collection of genre works.",
+  "projects": [
+    {
+      "id": "trauma-bond",
+      "title": "Trauma Bond",
+      "slug": "trauma-bond",
+      "poster": "/images/projects/trauma_bond.webp",
+      "year": "2025",
+      "genre": "Psychological Thriller",
+      "status": "In Development",
+      "logline": "When a tender relationship becomes a refuge from past pain, a trusting woman slowly realizes that the intimacy she depends on is also the mechanism of her captivity—and the person she loves most may be the one who will destroy her.",
+      "isVaulted": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "jack-knife-jackie",
+      "title": "Jack Knife Jackie",
+      "slug": "jack-knife-jackie",
+      "poster": "/images/projects/Jack_Knife_Jackie.webp",
+      "year": "2025",
+      "genre": "Horror Thriller",
+      "status": "In Development",
+      "logline": "On a frozen highway in the dead of winter, a stranded man accepts help from a lone female trucker—only to discover that the roadblock was intentional, and escape is impossible once her version of rescue begins.",
+      "isVaulted": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "invalid",
+      "title": "Invalid",
+      "slug": "invalid",
+      "poster": "/images/projects/invalid_poster.webp",
+      "year": "2025",
+      "genre": "Psychological Horror",
+      "status": "In Development",
+      "logline": "Haunted by an unspoken trauma she cannot name, a woman leans on her devoted husband for stability—until the line between support and control begins to blur, and the secret at the center of her suffering threatens to expose the person she trusts most.",
+      "isVaulted": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "a-cold-heart",
+      "title": "A Cold Heart",
+      "slug": "a-cold-heart",
+      "poster": "/images/projects/a_cold_heart_poster.webp",
+      "year": "2025",
+      "genre": "Slasher",
+      "status": "In Development",
+      "logline": "At an exclusive cold-weather wellness retreat promising purification and renewal, guests begin dying one by one—until it becomes clear that the subzero rituals are not therapeutic, but a serial killer's method of turning health, discipline, and exposure into a perfect, bloodless weapon.",
+      "isVaulted": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "the-itch",
+      "title": "The Itch",
+      "slug": "the-itch",
+      "poster": "/images/projects/the_itch_poster.webp",
+      "year": "2025",
+      "genre": "Supernatural Horror",
+      "status": "In Development",
+      "logline": "When a secret affair fractures a marriage and destabilizes an entire family, something ancient and formless begins to manifest—feeding on betrayal, guilt, and desire—until the lovers realize the damage they've caused has taken on a life, and a body, of its own.",
+      "isVaulted": false,
+      "sortOrder": 5
+    }
+  ]
+}
