@@ -362,6 +362,12 @@ const footprints = [
       transform: rotate(180deg);
     }
 
+    /* Alternate rotation for walking effect on mobile */
+    .trail__step:nth-child(2) .footprint__img,
+    .trail__step:nth-child(4) .footprint__img {
+      transform: rotate(180deg) rotate(-25deg);
+    }
+
     .trail__content {
       max-width: 100%;
       padding: 1.25rem 1.5rem;
