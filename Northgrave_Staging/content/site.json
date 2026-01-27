@@ -63,7 +63,7 @@
       { "label": "About", "href": "#about" },
       { "label": "Team", "href": "#team" },
       { "label": "Projects", "href": "#projects" },
-      { "label": "Vault", "href": "/vault" }
+      { "label": "Vault", "href": "/vault/" }
     ]
   }
 }
