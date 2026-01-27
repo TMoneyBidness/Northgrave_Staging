@@ -1,28 +1,28 @@
 {
-  "heading": "Projects",
-  "intro": "Our curated collection of genre works.",
+  "heading": "Project Slate",
+  "intro": "Our original collection of genre works.",
   "projects": [
     {
       "id": "trauma-bond",
       "title": "Trauma Bond",
       "slug": "trauma-bond",
-      "poster": "/images/projects/trauma_bond.webp",
+      "poster": "/images/projects/Trauma_Bond_Poster.webp",
       "year": "2025",
       "genre": "Psychological Thriller",
       "status": "In Development",
-      "logline": "When a tender relationship becomes a refuge from past pain, a trusting woman slowly realizes that the intimacy she depends on is also the mechanism of her captivity—and the person she loves most may be the one who will destroy her.",
+      "logline": "A traumatized widow becomes the lone witness to a murder and pursues the case, along with the victim's brother, for the closure she never got until the killer turns her grief into a deadly weapon.",
       "isVaulted": false,
       "sortOrder": 1
     },
     {
       "id": "jack-knife-jackie",
-      "title": "Jack Knife Jackie",
+      "title": "Jacknife Jackie",
       "slug": "jack-knife-jackie",
       "poster": "/images/projects/Jack_Knife_Jackie.webp",
       "year": "2025",
       "genre": "Horror Thriller",
       "status": "In Development",
-      "logline": "On a frozen highway in the dead of winter, a stranded man accepts help from a lone female trucker—only to discover that the roadblock was intentional, and escape is impossible once her version of rescue begins.",
+      "logline": "A lonely long-haul trucker abducts a stranded man and traps him inside the decaying 1970s apartment she has built in the back of her refrigerated trailer. As she carries him across the country in a delusional attempt to create the perfect relationship, he discovers she will murder anyone who threatens her fantasy. His only hope for survival is to escape before she reaches his family and eliminates them to keep him all to herself.",
       "isVaulted": false,
       "sortOrder": 2
     },
@@ -34,7 +34,7 @@
       "year": "2025",
       "genre": "Psychological Horror",
       "status": "In Development",
-      "logline": "Haunted by an unspoken trauma she cannot name, a woman leans on her devoted husband for stability—until the line between support and control begins to blur, and the secret at the center of her suffering threatens to expose the person she trusts most.",
+      "logline": "After a car accident leaves Lynn, an affluent and successful woman, physically disabled, she has premonitions that her live-in nurse, Alex, wants her dead so Alex can take Lynn's place in Lynn's seemingly-perfect life.",
       "isVaulted": false,
       "sortOrder": 3
     },
@@ -46,7 +46,7 @@
       "year": "2025",
       "genre": "Slasher",
       "status": "In Development",
-      "logline": "At an exclusive cold-weather wellness retreat promising purification and renewal, guests begin dying one by one—until it becomes clear that the subzero rituals are not therapeutic, but a serial killer's method of turning health, discipline, and exposure into a perfect, bloodless weapon.",
+      "logline": "After chronic pain costs her the man she loves, Georgia joins a remote Northern retreat where cold dips and psychedelics mask a Nordic healer's belief that suffering can only be cured by killing the body that feels it and what begins as a wellness getaway becomes a fight for survival when their sociopathic host transforms ice baths into executions.",
       "isVaulted": false,
       "sortOrder": 4
     },
@@ -58,9 +58,21 @@
       "year": "2025",
       "genre": "Supernatural Horror",
       "status": "In Development",
-      "logline": "When a secret affair fractures a marriage and destabilizes an entire family, something ancient and formless begins to manifest—feeding on betrayal, guilt, and desire—until the lovers realize the damage they've caused has taken on a life, and a body, of its own.",
+      "logline": "When a hidden affair awakens the ancient curse of The Itch, a devoted surgeon's forbidden lust transforms into a nightmarish obsession that drives him to violently destroy his own family.",
       "isVaulted": false,
       "sortOrder": 5
+    },
+    {
+      "id": "nutjob",
+      "title": "Nutjob",
+      "slug": "nutjob",
+      "poster": "/images/projects/Nutjob_poster.webp",
+      "year": "2025",
+      "genre": "Creature Horror",
+      "status": "In Development",
+      "logline": "After a bad breakup, Simone's determined to focus her energy on a new crush, but on a group weekend in the woods camping with a bachelor party, she discovers ancient parasitic spiders hellbent on reproduction, and something even more disgusting and dangerous than that: the true colors of her crush.",
+      "isVaulted": false,
+      "sortOrder": 6
     }
   ]
 }

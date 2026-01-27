@@ -44,8 +44,8 @@ const {
               alt={`Portrait of ${member.name}`}
               class="team__portrait"
               loading="lazy"
-              width="300"
-              height="400"
+              width="400"
+              height="533"
             />
             <div class="team__portrait-glow"></div>
           </div>
@@ -54,15 +54,7 @@ const {
               <h3 class="team__name">{member.name}</h3>
               <p class="team__title">{member.title}</p>
             </div>
-
-            <div class="team__bio-panel">
-              <p class="team__bio">{member.bio}</p>
-              {member.socials?.email && (
-                <a href={`mailto:${member.socials.email}`} class="team__social-link">
-                  Contact
-                </a>
-              )}
-            </div>
+            <p class="team__bio" set:html={`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${member.bio}`} />
           </div>
         </article>
       ))}
@@ -73,7 +65,7 @@ const {
 <style>
   .team {
     position: relative;
-    padding: clamp(4rem, 8vh, 7rem) clamp(1rem, 4vw, 3rem);
+    padding: clamp(2rem, 4vh, 3.5rem) clamp(1rem, 4vw, 3rem);
     background: rgba(5, 5, 9, 0.98);
   }
 
@@ -105,10 +97,11 @@ const {
   }
 
   .team__grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(2rem, 4vw, 3rem);
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 4rem);
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
   .team__member {
@@ -116,19 +109,19 @@ const {
     width: 100%;
     max-width: none;
     margin: 0;
-    display: grid;
-    grid-template-columns: minmax(180px, 260px) 1fr;
-    gap: clamp(1.25rem, 3vw, 2.5rem);
-    align-items: start;
+    overflow: hidden;
   }
 
+  /* Float layout for portrait - doubled size */
   .team__portrait-wrapper {
+    float: left;
     position: relative;
-    width: 100%;
+    width: 380px;
     aspect-ratio: 3/4;
     border-radius: 1.5rem;
     overflow: hidden;
-    margin-bottom: 0;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
     transition: transform 0.4s ease;
   }
 
@@ -160,81 +153,84 @@ const {
     opacity: 1;
   }
 
+  .team__content {
+    overflow: hidden;
+  }
+
   .team__info {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.5rem;
     text-align: left;
   }
 
   .team__name {
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: 1.7rem;
     font-weight: 600;
     letter-spacing: var(--letter-spacing-cinematic);
     color: var(--color-text);
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .team__title {
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     color: var(--color-ember);
     letter-spacing: 0.05em;
     text-align: left;
-  }
-
-  .team__bio-panel {
-    text-align: left;
+    margin-bottom: 0.5rem;
   }
 
   .team__bio {
     font-family: var(--font-body);
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.7;
     color: var(--color-text-muted);
-    margin-bottom: 1rem;
+    margin: 0;
+    text-align: justify;
   }
 
-  .team__social-link {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: var(--letter-spacing-cinematic);
-    color: var(--color-ember);
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--color-ember);
-    border-radius: 999px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  /* Clearfix for float */
+  .team__member::after {
+    content: "";
+    display: table;
+    clear: both;
   }
 
-  .team__social-link:hover {
-    background-color: var(--color-ember);
-    color: var(--color-night);
+  @media (max-width: 900px) {
+    .team__portrait-wrapper {
+      width: 280px;
+      margin-right: 1.5rem;
+    }
   }
 
   @media (max-width: 768px) {
-    .team__grid {
-      grid-template-columns: 1fr;
-    }
-
     .team__member {
-      grid-template-columns: 1fr;
       max-width: 520px;
       margin: 0 auto;
     }
 
     .team__portrait-wrapper {
-      max-width: 360px;
-      margin: 0 auto;
+      float: none;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto 1.5rem auto;
     }
 
-    .team__info,
-    .team__title,
-    .team__bio-panel {
+    .team__content {
       text-align: center;
+    }
+
+    .team__info {
+      text-align: center;
+    }
+
+    .team__title {
+      text-align: center;
+    }
+
+    .team__bio {
+      text-align: left;
     }
   }
 

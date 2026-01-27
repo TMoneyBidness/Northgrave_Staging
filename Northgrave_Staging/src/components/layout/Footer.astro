@@ -5,13 +5,13 @@ const currentYear = new Date().getFullYear();
 <footer class="footer">
   <div class="footer__container">
     <div class="footer__brand">
-      <span class="footer__name">Northgrave</span>
+      <span class="footer__name">Northgrave Pictures Inc.</span>
       <span class="footer__tagline">Innovative. Quality. Genre.</span>
     </div>
 
     <div class="footer__contact">
-      <a href="mailto:cheryl@northgrave.com" class="footer__email">
-        cheryl@northgrave.com
+      <a href="mailto:cheryl@northgrave.com" class="footer__contact-btn">
+        Contact Us
       </a>
     </div>
 
@@ -61,17 +61,25 @@ const currentYear = new Date().getFullYear();
     text-transform: uppercase;
   }
 
-  .footer__email {
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
+  .footer__contact-btn {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-wide);
     color: var(--color-ember);
+    text-transform: uppercase;
     text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.3s ease;
+    padding: 0.6rem 1.5rem;
+    border: 1px solid var(--color-ember);
+    border-radius: 999px;
+    background: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  .footer__email:hover {
-    color: var(--color-ember-core);
+  .footer__contact-btn:hover {
+    background-color: var(--color-ember);
+    color: var(--color-night);
   }
 
   .footer__legal {

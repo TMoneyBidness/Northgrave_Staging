@@ -17,19 +17,40 @@
   "about": {
     "heading": "About Northgrave",
     "intro": "Where vision meets execution.",
-    "mission": "Northgrave Studios is dedicated to creating bold, distinctive genre content that pushes creative boundaries while maintaining the highest standards of production quality.",
+    "sections": [
+      {
+        "heading": "IN THE BEGINNING...",
+        "text": "Founded at the Toronto International Film Festival in 2025, Northgrave Pictures is a Canadian horror focused production company created by Cheryl Meyer and Justin Harding to deliver bold, entertaining genre films at smart, efficient budgets."
+      },
+      {
+        "heading": "TEAM",
+        "text": "Together, Meyer and Harding bring four decades of experience producing series, features, commercials, and branded content through streamlined teams built for speed, creativity, and value. Their work has been recognized with Canadian Screen Awards, multiple festival selections and wins."
+      },
+      {
+        "heading": "EXPERIENCE",
+        "text": "With 20+ years of experience across development and post-production, and a background in marketing, Meyer brings an end-to-end command of how films get made and how they find an audience. At Northgrave, she builds every project with a 360° plan: development through release, shaped at every step by audience engagement, marketing strategy, and launch momentum."
+      },
+      {
+        "heading": "TALENT",
+        "text": "Harding brings his expertise in practical effects and emerging technologies to ensure cinematic creatures, characters, and consistently top tier execution. Harding's experience working with the horror greats of Eli Roth and Corin Hardy has taught him who to create high concept films designed to evolve into long term franchises with merchandising potential."
+      },
+      {
+        "heading": "CANADIAN EDGE",
+        "text": "With access to Canadian incentives, exceptional cast and crew, and unforgettable landscapes, Northgrave Pictures is positioned to create globally competitive horror with legacy potential. The company presented its slate at the American Film Market in 2025 and will continue international expansion at the European Film Market in 2026."
+      }
+    ],
     "values": [
       {
         "title": "Innovative",
-        "description": "We challenge conventions and explore new storytelling territories."
+        "description": "Utilizing cutting-edge technology for mind-blowing audience experiences."
       },
       {
         "title": "Quality",
-        "description": "Every frame, every sound, every detail is crafted with precision."
+        "description": "A team who cares about delivering the highest quality of every frame."
       },
       {
         "title": "Genre",
-        "description": "We embrace the power of genre to create memorable, impactful experiences."
+        "description": "A singular focus on executing horror with extreme tension, dread and scares."
       }
     ]
   },

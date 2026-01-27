@@ -33,7 +33,7 @@ import projectsData from "../../content/projects.json";
     <About
       heading={siteData.about.heading}
       intro={siteData.about.intro}
-      mission={siteData.about.mission}
+      sections={siteData.about.sections}
       values={siteData.about.values}
     />
 
@@ -42,6 +42,12 @@ import projectsData from "../../content/projects.json";
       intro={teamData.intro}
       members={teamData.members}
     />
+
+    <div class="contact-cta">
+      <a href="mailto:cheryl@northgrave.com" class="contact-cta__button">
+        Contact Us
+      </a>
+    </div>
 
     <Marquee
       items={[
@@ -60,7 +66,7 @@ import projectsData from "../../content/projects.json";
         { src: "/images/client_logos/tiff.png", alt: "Toronto International Film Festival" },
         { src: "/images/client_logos/vancouver_horror_show.png", alt: "Vancouver Horror Show" },
       ]}
-      speed={0.4}
+      speed={0.5}
     />
 
     <Projects
@@ -72,3 +78,34 @@ import projectsData from "../../content/projects.json";
 
   <Footer />
 </BaseLayout>
+
+<style>
+  .contact-cta {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem 0;
+    margin-bottom: -8px;
+    background: rgba(5, 5, 9, 0.98);
+  }
+
+  .contact-cta__button {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-ember);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    border: 2px solid var(--color-ember);
+    border-radius: 999px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+
+  .contact-cta__button:hover {
+    background-color: var(--color-ember);
+    color: var(--color-night);
+    transform: scale(1.05);
+  }
+</style>

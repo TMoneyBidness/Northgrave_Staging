@@ -1,4 +1,9 @@
 ---
+interface Section {
+  heading: string;
+  text: string;
+}
+
 interface Value {
   title: string;
   description: string;
@@ -7,16 +12,25 @@ interface Value {
 interface Props {
   heading?: string;
   intro?: string;
-  mission?: string;
+  sections?: Section[];
   values?: Value[];
 }
 
 const {
   heading = "About Northgrave",
   intro = "Where vision meets execution.",
-  mission = "Northgrave Studios is dedicated to creating bold, distinctive genre content that pushes creative boundaries while maintaining the highest standards of production quality.",
+  sections = [],
   values = [],
 } = Astro.props;
+
+// Footprint images - progression from less bloody to more bloody
+const footprints = [
+  "/images/features/footprints/bloody_1 (1).png",
+  "/images/features/footprints/bloody_3 (1).png",
+  "/images/features/footprints/bloody_5 (1).png",
+  "/images/features/footprints/bloody_8 (1).png",
+  "/images/features/footprints/bloody_11 (1).png",
+];
 ---
 
 <section class="about" id="about">
@@ -26,20 +40,52 @@ const {
       <p class="about__intro">{intro}</p>
     </div>
 
-    <div class="about__content">
-      <p class="about__mission">{mission}</p>
-
-      {values.length > 0 && (
-        <div class="about__values">
-          {values.map((value) => (
-            <div class="about__value">
-              <h3 class="about__value-title">{value.title}</h3>
-              <p class="about__value-description">{value.description}</p>
-            </div>
-          ))}
-        </div>
-      )}
+    <!-- Bootprint Trail with Text Boxes -->
+    <div class="about__trail">
+      {sections.map((section, i) => (
+        <article
+          class={`trail__step ${i % 2 === 0 ? 'trail__step--left' : 'trail__step--right'}`}
+          data-reveal
+          style={`--delay: ${i * 0.08}s`}
+        >
+          <div class="trail__content">
+            <h3 class="trail__heading">{section.heading}</h3>
+            <p class="trail__text">{section.text}</p>
+          </div>
+          <div class="trail__footprint">
+            <img
+              src={footprints[i] || footprints[footprints.length - 1]}
+              alt=""
+              class="footprint__img"
+              loading="lazy"
+            />
+          </div>
+        </article>
+      ))}
     </div>
+
+    <!-- Grave Image Divider -->
+    <div class="about__grave-divider">
+      <div class="about__grave-overlay"></div>
+      <img
+        src="/images/features/footprints/grave_narrow.webp"
+        alt=""
+        class="about__grave-img"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Values Section -->
+    {values.length > 0 && (
+      <div class="about__values">
+        {values.map((value) => (
+          <div class="about__value">
+            <h3 class="about__value-title">{value.title}</h3>
+            <p class="about__value-description">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    )}
 
     <div class="about__accent" aria-hidden="true"></div>
   </div>
@@ -80,21 +126,148 @@ const {
     letter-spacing: 0.05em;
   }
 
-  .about__content {
+  /* Trail Layout - center line concept */
+  .about__trail {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    position: relative;
+  }
+
+  .trail__step {
     display: grid;
-    gap: 4rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: var(--delay, 0s);
+    position: relative;
+    padding: 1.5rem 0;
   }
 
-  .about__mission {
+  /* Left text: content on left half, footprint centered in right half */
+  .trail__step--left .trail__content {
+    grid-column: 1;
+    justify-self: end;
+  }
+
+  .trail__step--left .trail__footprint {
+    grid-column: 2;
+    justify-self: center;
+  }
+
+  /* Right text: footprint centered in left half, content on right half */
+  .trail__step--right .trail__content {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .trail__step--right .trail__footprint {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+  }
+
+  .trail__step.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Footprint Image - large, centered in opposite column */
+  .trail__footprint {
+    width: 200px;
+    height: 280px;
+    position: relative;
+    z-index: 2;
+    align-self: center;
+  }
+
+  .footprint__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Rotate 180 degrees - images are upside down */
+    transform: rotate(180deg);
+  }
+
+  /* Slight rotation for natural walking effect */
+  .trail__step--left .footprint__img {
+    transform: rotate(180deg) rotate(-20deg);
+  }
+
+  .trail__step--right .footprint__img {
+    transform: rotate(180deg) rotate(-8deg);
+  }
+
+  /* Content Box - portrait orientation */
+  .trail__content {
+    max-width: 450px;
+    padding: 2rem 1.75rem;
+    background: linear-gradient(145deg, rgba(10, 6, 12, 0.9), rgba(18, 10, 16, 0.85));
+    border: 1px solid rgba(242, 111, 37, 0.2);
+    border-radius: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .trail__content:hover {
+    border-color: rgba(242, 111, 37, 0.4);
+    box-shadow: 0 8px 30px rgba(242, 111, 37, 0.12);
+  }
+
+  .trail__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-ember);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .trail__text {
     font-family: var(--font-body);
-    font-size: clamp(1.1rem, 2vw, 1.35rem);
-    line-height: 1.8;
-    color: var(--color-text);
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    line-height: 1.7;
+    color: var(--color-text-muted);
   }
 
+  /* Grave Image Divider */
+  .about__grave-divider {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 300px;
+    margin: 3rem auto;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
+
+  .about__grave-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    height: 100vw;
+    max-height: 1000px;
+    width: auto;
+    object-fit: cover;
+  }
+
+  .about__grave-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Values Section */
   .about__values {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -103,11 +276,12 @@ const {
   }
 
   .about__value {
-    padding: 2rem;
+    padding: 2.5rem;
     background: linear-gradient(145deg, rgba(10, 6, 12, 0.6), rgba(18, 10, 16, 0.4));
     border: 1px solid rgba(242, 111, 37, 0.15);
     border-radius: 1rem;
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
   }
 
   .about__value:hover {
@@ -118,7 +292,7 @@ const {
 
   .about__value-title {
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: var(--letter-spacing-cinematic);
     color: var(--color-ember);
@@ -128,7 +302,7 @@ const {
 
   .about__value-description {
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.7;
     color: var(--color-text-muted);
   }
@@ -145,4 +319,106 @@ const {
     pointer-events: none;
     z-index: -1;
   }
+
+  /* Mobile: Stack vertically */
+  @media (max-width: 768px) {
+    .about__trail {
+      gap: 2rem;
+    }
+
+    .trail__step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      padding: 0;
+    }
+
+    .trail__step--left .trail__content,
+    .trail__step--right .trail__content {
+      justify-self: center;
+    }
+
+    .trail__step--left .trail__footprint,
+    .trail__step--right .trail__footprint {
+      justify-self: center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .trail__step--right .trail__footprint {
+      grid-row: auto;
+    }
+
+    .trail__footprint {
+      width: 100px;
+      height: 140px;
+      transform: none;
+    }
+
+    .trail__step--left .footprint__img,
+    .trail__step--right .footprint__img {
+      transform: rotate(180deg);
+    }
+
+    .trail__content {
+      max-width: 100%;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .trail__heading {
+      font-size: 1rem;
+    }
+
+    .trail__text {
+      font-size: 0.9rem;
+    }
+
+    .about__grave-divider {
+      height: 200px;
+      margin: 2rem auto;
+    }
+
+    .about__grave-img {
+      height: 120vw;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .trail__step {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 </style>
+
+<script>
+  function initScrollReveal() {
+    const steps = document.querySelectorAll('[data-reveal]');
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      steps.forEach(step => step.classList.add('revealed'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    steps.forEach(step => observer.observe(step));
+  }
+
+  initScrollReveal();
+  document.addEventListener('astro:page-load', initScrollReveal);
+</script>
