@@ -71,14 +71,20 @@ jobs:
             --include "*.html" \
             --cache-control "public, max-age=300, stale-while-revalidate=86400"
 
-          # Sync assets with long cache (fingerprinted)
+          # Sync fingerprinted assets (_astro/) with long cache
+          aws s3 sync dist/_astro/ s3://${{ env.S3_BUCKET }}/_astro/ \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable"
+
+          # Sync remaining assets (images, videos, etc.) with 1-day cache
           aws s3 sync dist/ s3://${{ env.S3_BUCKET }}/ \
             --delete \
             --exclude "*.html" \
-            --cache-control "public, max-age=31536000, immutable"
+            --exclude "_astro/*" \
+            --cache-control "public, max-age=86400, stale-while-revalidate=86400"
 
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
-            --paths "/*.html" "/index.html" "/"
+            --paths "/*.html" "/index.html" "/" "/images/*"
