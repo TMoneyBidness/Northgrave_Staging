@@ -1,4 +1,4 @@
-# Northgrave Studios Robots.txt
+# Northgrave Pictures Robots.txt
 
 User-agent: *
 Allow: /
