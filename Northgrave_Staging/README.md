@@ -1,4 +1,4 @@
-# Northgrave Studios Website
+# Northgrave Pictures Website
 
 A cinematic, brand-forward website built with Astro, featuring a password-protected Vault for partner/investor materials.
 
@@ -61,22 +61,32 @@ Content is stored in JSON files in the `/content` directory:
 
 ## Deployment
 
-### Staging
+### Staging (staging.northgrave.com)
+Push to `main` branch → Auto-deploys via GitHub Actions.
 
-Push to `main` branch → Auto-deploys to `staging.northgrave.com`
+### Production (northgrave.com)
+1. Verify changes on staging.northgrave.com
+2. Merge main into release:
+   ```bash
+   git checkout release
+   git merge main
+   git push origin release
+   ```
+3. GitHub Actions auto-deploys to production
+4. Verify at northgrave.com
 
-### Production
-
-Push to `release` branch → Auto-deploys to `northgrave.com`
+### Manual Deploy (emergency)
+Use `workflow_dispatch` trigger in GitHub Actions UI:
+1. Go to Actions tab → select workflow → Run workflow
+2. Choose the target branch
 
 ### AWS Infrastructure
-
 ```bash
 cd infrastructure/cdk
 npm install
-npm run deploy:staging   # Deploy staging infrastructure
+npm run deploy:staging    # Deploy staging infrastructure
 npm run deploy:production # Deploy production infrastructure
-npm run deploy:auth      # Deploy auth stack
+npm run deploy:auth       # Deploy auth stack
 ```
 
 ## Environment Variables (GitHub Secrets)
@@ -115,4 +125,4 @@ The Vault uses CloudFront signed cookies for access control:
 
 ## License
 
-Proprietary - Northgrave Studios
+Proprietary - Northgrave Pictures

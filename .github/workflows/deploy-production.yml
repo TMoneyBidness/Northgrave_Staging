@@ -1,23 +1,30 @@
-name: Deploy to Staging
+name: Deploy to Production
 
 on:
   push:
     branches:
-      - main
+      - release
   workflow_dispatch:
 
 permissions:
   id-token: write
   contents: read
 
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
 env:
   AWS_REGION: us-east-1
-  S3_BUCKET: staging.northgrave.com
-  CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.STAGING_CLOUDFRONT_DISTRIBUTION_ID }}
+  S3_BUCKET: northgrave.com
+  CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.PRODUCTION_CLOUDFRONT_DISTRIBUTION_ID }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Northgrave_Staging
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,6 +34,7 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
+          cache-dependency-path: Northgrave_Staging/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -38,13 +46,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist/
+          path: Northgrave_Staging/dist/
           retention-days: 1
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment: staging
+    environment: production
     steps:
       - name: Download build artifacts
         uses: actions/download-artifact@v4
@@ -67,14 +75,20 @@ jobs:
             --include "*.html" \
             --cache-control "public, max-age=300, stale-while-revalidate=86400"
 
-          # Sync assets with long cache (fingerprinted)
+          # Sync fingerprinted assets (_astro/) with long cache
+          aws s3 sync dist/_astro/ s3://${{ env.S3_BUCKET }}/_astro/ \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable"
+
+          # Sync remaining assets (images, videos, etc.) with 1-day cache
           aws s3 sync dist/ s3://${{ env.S3_BUCKET }}/ \
             --delete \
             --exclude "*.html" \
-            --cache-control "public, max-age=31536000, immutable"
+            --exclude "_astro/*" \
+            --cache-control "public, max-age=86400, stale-while-revalidate=86400"
 
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
-            --paths "/*.html" "/index.html" "/"
+            --paths "/*"
