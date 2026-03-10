@@ -60,9 +60,9 @@
   },
   "navigation": {
     "links": [
-      { "label": "About", "href": "#about" },
+      { "label": "About", "href": "/#about" },
       { "label": "Team", "href": "/team" },
-      { "label": "Projects", "href": "#projects" },
+      { "label": "Projects", "href": "/#projects" },
       { "label": "Vault", "href": "/vault/" }
     ]
   }
