@@ -7,7 +7,7 @@ const { transparent = true } = Astro.props;
 
 const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Team", href: "#team" },
+  { label: "Team", href: "/team" },
   { label: "Projects", href: "#projects" },
   { label: "Vault", href: "/vault" },
 ];
@@ -151,7 +151,7 @@ const navLinks = [
     color: var(--color-text);
     text-transform: uppercase;
     text-decoration: none;
-    padding: 0.5rem 0;
+    padding: 0.75rem 0.25rem;
     position: relative;
     transition: color 0.3s ease;
   }

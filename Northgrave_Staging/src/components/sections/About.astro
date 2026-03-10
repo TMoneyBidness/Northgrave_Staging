@@ -1,9 +1,4 @@
 ---
-interface Section {
-  heading: string;
-  text: string;
-}
-
 interface Value {
   title: string;
   description: string;
@@ -12,25 +7,15 @@ interface Value {
 interface Props {
   heading?: string;
   intro?: string;
-  sections?: Section[];
+  sections?: any[];
   values?: Value[];
 }
 
 const {
   heading = "About Northgrave",
   intro = "Where vision meets execution.",
-  sections = [],
   values = [],
 } = Astro.props;
-
-// Footprint images - progression from less bloody to more bloody
-const footprints = [
-  "/images/features/footprints/bloody_1 (1).png",
-  "/images/features/footprints/bloody_3 (1).png",
-  "/images/features/footprints/bloody_5 (1).png",
-  "/images/features/footprints/bloody_8 (1).png",
-  "/images/features/footprints/bloody_11 (1).png",
-];
 ---
 
 <section class="about" id="about">
@@ -39,43 +24,85 @@ const footprints = [
       <h2 class="about__heading">{heading}</h2>
       <p class="about__intro">{intro}</p>
     </div>
+  </div>
 
-    <!-- Bootprint Trail with Text Boxes -->
-    <div class="about__trail">
-      {sections.map((section, i) => (
-        <article
-          class={`trail__step ${i % 2 === 0 ? 'trail__step--left' : 'trail__step--right'}`}
-          data-reveal
-          style={`--delay: ${i * 0.08}s`}
-        >
-          <div class="trail__content">
-            <h3 class="trail__heading">{section.heading}</h3>
-            <p class="trail__text">{section.text}</p>
+  <!-- Theatrical Spotlight Zone — full width, outside container -->
+  <div class="spotlight-zone" id="spotlight-zone">
+      <div class="spotlight-zone__glow" id="spotlight-glow"></div>
+      <div class="spotlight-zone__darkness" id="spotlight-darkness"></div>
+
+      <div class="spotlight-zone__cards">
+
+        <!-- CARD 01 — THE STUDIO -->
+        <div class="card-row card-row--left">
+          <div class="card-row__sidebar card-row__sidebar--left"></div>
+          <div class="card-row__text">
+            <div class="card-row__label-row">
+              <span class="card-row__label">01</span>
+              <div class="card-row__rule"></div>
+            </div>
+            <h3 class="card-row__title">The Studio</h3>
+            <p class="card-row__hook">Horror built to last.</p>
+            <p class="card-row__body">The audience for horror has never been bigger. The window for smart, franchise-minded Canadian horror has never been more open. Northgrave Pictures was built for exactly this moment, and built to put big ideas on screen through craft, ingenuity, and discipline.</p>
+            <p class="card-row__accent">We don't just make films. We build worlds.</p>
+            <p class="card-row__footer">Founded TIFF 2025 · AFM 2025 · EFM 2026</p>
           </div>
-          <div class="trail__footprint">
-            <img
-              src={footprints[i] || footprints[footprints.length - 1]}
-              alt=""
-              class="footprint__img"
-              loading="lazy"
-            />
+          <div class="card-row__media">
+            <img class="card-row__img" src="/images/features/footprints/northgrave_theatre_upscaled.webp" alt="Northgrave Theatre" loading="lazy">
+            <div class="card-row__corner card-row__corner--tl"></div>
+            <div class="card-row__corner card-row__corner--br"></div>
           </div>
-        </article>
-      ))}
-    </div>
+        </div>
 
-    <!-- Grave Image Divider -->
-    <div class="about__grave-divider">
-      <div class="about__grave-overlay"></div>
-      <img
-        src="/images/features/footprints/northgrave_theatre_upscaled.webp"
-        alt=""
-        class="about__grave-img"
-        loading="lazy"
-      />
-    </div>
+        <!-- CARD 02 — THE TEAM -->
+        <div class="card-row card-row--right">
+          <div class="card-row__sidebar card-row__sidebar--right"></div>
+          <div class="card-row__text">
+            <div class="card-row__label-row">
+              <span class="card-row__label">02</span>
+              <div class="card-row__rule"></div>
+            </div>
+            <h3 class="card-row__title">The Team</h3>
+            <p class="card-row__hook">End-to-end command. No exceptions.</p>
+            <p class="card-row__body">Cheryl Meyer is an award winning screenwriter with over 20 years across development, production, and world building. She approaches every project with a clear understanding of both the craft of storytelling and how stories find and engage an audience.</p>
+            <p class="card-row__body">Justin Harding is a seasoned director who has worked alongside Eli Roth and Corin Hardy and knows how the best genre films are made. He brings a rare technical range, merging practical craft with emerging technology to expand what is possible on screen.</p>
+            <p class="card-row__accent">Together: the creative engine and the execution machine.</p>
+            <p class="card-row__footer">Canadian Screen Award · 50+ festival wins · 4 decades combined</p>
+          </div>
+          <div class="card-row__media">
+            <img class="card-row__img" src="/images/headshots/Northgrave_Team_Photo.webp" alt="Northgrave Team" loading="lazy">
+            <div class="card-row__corner card-row__corner--tl"></div>
+            <div class="card-row__corner card-row__corner--br"></div>
+          </div>
+        </div>
 
-    <!-- Values Section -->
+        <!-- CARD 03 — THE CANADIAN EDGE -->
+        <div class="card-row card-row--left-offset">
+          <div class="card-row__sidebar card-row__sidebar--left"></div>
+          <div class="card-row__text">
+            <div class="card-row__label-row">
+              <span class="card-row__label">03</span>
+              <div class="card-row__rule"></div>
+            </div>
+            <h3 class="card-row__title">The Canadian Edge</h3>
+            <p class="card-row__hook">Canada's unfair advantage.</p>
+            <p class="card-row__body">The incentives are significant. The locations are the kind horror filmmakers search years to uncover. Our projects are made to last, and our slate is engineered to sell, in the only genre where fear consistently drives the market.</p>
+            <p class="card-row__accent">We're already in the room. Ask us about what's moving.</p>
+            <p class="card-row__footer">AFM · EFM · Frontières</p>
+          </div>
+          <div class="card-row__media">
+            <video class="card-row__img" src="/images/features/footprints/Northern_Canada_VIdeo.mp4" autoplay muted loop playsinline></video>
+            <div class="card-row__corner card-row__corner--tl"></div>
+            <div class="card-row__corner card-row__corner--br"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Values Section — back inside container -->
+  <div class="about__container">
     {values.length > 0 && (
       <div class="about__values">
         {values.map((value) => (
@@ -86,16 +113,14 @@ const footprints = [
         ))}
       </div>
     )}
-
-    <div class="about__accent" aria-hidden="true"></div>
   </div>
 </section>
 
 <style>
   .about {
     position: relative;
-    padding: clamp(4rem, 8vh, 7rem) clamp(1rem, 4vw, 3rem);
-    background: linear-gradient(180deg, rgba(5, 5, 9, 0.92) 0%, rgba(5, 5, 9, 0.95) 20%, rgba(5, 5, 9, 0.98) 100%);
+    padding: clamp(4rem, 8vh, 7rem) 0 clamp(4rem, 8vh, 7rem);
+    background: var(--color-night-deep);
   }
 
   .about__container {
@@ -106,7 +131,8 @@ const footprints = [
 
   .about__header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    padding: 0 clamp(1rem, 4vw, 3rem);
   }
 
   .about__heading {
@@ -126,148 +152,228 @@ const footprints = [
     letter-spacing: 0.05em;
   }
 
-  /* Trail Layout - center line concept */
-  .about__trail {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    max-width: 900px;
-    margin: 0 auto 3rem auto;
+  /* ─── SPOTLIGHT ZONE ─── */
+  .spotlight-zone {
     position: relative;
-  }
-
-  .trail__step {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    align-items: center;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    transition-delay: var(--delay, 0s);
-    position: relative;
-    padding: 1.5rem 0;
-  }
-
-  /* Left text: content on left half, footprint centered in right half */
-  .trail__step--left .trail__content {
-    grid-column: 1;
-    justify-self: end;
-  }
-
-  .trail__step--left .trail__footprint {
-    grid-column: 2;
-    justify-self: center;
-  }
-
-  /* Right text: footprint centered in left half, content on right half */
-  .trail__step--right .trail__content {
-    grid-column: 2;
-    justify-self: start;
-  }
-
-  .trail__step--right .trail__footprint {
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: center;
-  }
-
-  .trail__step.revealed {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Footprint Image - large, centered in opposite column */
-  .trail__footprint {
-    width: 200px;
-    height: 280px;
-    position: relative;
-    z-index: 2;
-    align-self: center;
-  }
-
-  .footprint__img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* Rotate 180 degrees - images are upside down */
-    transform: rotate(180deg);
-  }
-
-  /* Slight rotation for natural walking effect */
-  .trail__step--left .footprint__img {
-    transform: rotate(180deg) rotate(-20deg);
-  }
-
-  .trail__step--right .footprint__img {
-    transform: rotate(180deg) rotate(-8deg);
-  }
-
-  /* Content Box - portrait orientation */
-  .trail__content {
-    max-width: 450px;
-    padding: 2rem 1.75rem;
-    background: linear-gradient(145deg, rgba(10, 6, 12, 0.9), rgba(18, 10, 16, 0.85));
-    border: 1px solid rgba(242, 111, 37, 0.2);
-    border-radius: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    z-index: 1;
-  }
-
-  .trail__content:hover {
-    border-color: rgba(242, 111, 37, 0.4);
-    box-shadow: 0 8px 30px rgba(242, 111, 37, 0.12);
-  }
-
-  .trail__heading {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    font-weight: 600;
-    letter-spacing: var(--letter-spacing-wide);
-    color: var(--color-ember);
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-
-  .trail__text {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 1.5vw, 1.15rem);
-    line-height: 1.7;
-    color: var(--color-text-muted);
-  }
-
-  /* Grave Image Divider */
-  .about__grave-divider {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    height: 300px;
-    margin: 3rem auto;
     overflow: hidden;
-    border-radius: 0.5rem;
+    cursor: none;
+    padding: clamp(3rem, 6vh, 5rem) 0 clamp(4rem, 8vh, 7rem);
+    background: var(--color-night-deep);
   }
 
-  .about__grave-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  /* Restore cursor on touch devices */
+  @media (pointer: coarse) {
+    .spotlight-zone { cursor: auto; }
   }
 
-  .about__grave-overlay {
+  .spotlight-zone__glow {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.12);
     pointer-events: none;
-    z-index: 1;
+    z-index: 3;
+    background:
+      radial-gradient(circle 600px at var(--sx, 50%) var(--sy, 50%), rgba(196,163,90,0.09) 0%, rgba(196,163,90,0.02) 35%, transparent 65%),
+      radial-gradient(circle 300px at var(--sx, 50%) var(--sy, 50%), rgba(240,234,214,0.06) 0%, transparent 100%);
   }
 
-  /* Values Section */
+  .spotlight-zone__darkness {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background: radial-gradient(circle 700px at var(--sx, 50%) var(--sy, 50%), transparent 0%, rgba(5,5,9,0.92) 100%);
+  }
+
+  .spotlight-zone__cards {
+    position: relative;
+    z-index: 1;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+
+  /* ─── CARD ROWS ─── */
+  .card-row {
+    position: relative;
+    display: flex;
+    gap: 48px;
+    align-items: center;
+    max-width: 960px;
+    padding: 24px 0;
+    margin-bottom: clamp(3rem, 8vh, 6rem);
+  }
+
+  .card-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .card-row--left,
+  .card-row--left-offset { margin-left: auto; margin-right: auto; }
+  .card-row--right { margin-left: auto; margin-right: auto; flex-direction: row-reverse; }
+
+  .card-row__text { flex: 1 1 50%; min-width: 0; }
+  .card-row__media { flex: 1 1 50%; position: relative; }
+
+  .card-row__label-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .card-row__label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.25em;
+    color: rgba(196,163,90,0.2);
+    font-family: var(--font-ui, monospace);
+    transition: color 0.4s;
+  }
+
+  .card-row__rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, #1a1a1a, transparent);
+    transition: background 0.5s;
+  }
+
+  .card-row__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: 0.15em;
+    color: rgba(240,240,240,0.12);
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: color 0.5s;
+    margin: 0 0 12px;
+  }
+
+  .card-row__hook {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: rgba(196,163,90,0.15);
+    font-style: italic;
+    margin-bottom: 20px;
+    transition: color 0.4s;
+  }
+
+  .card-row__body {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: rgba(240,234,214,0.08);
+    margin: 0 0 20px;
+    transition: color 0.6s;
+  }
+
+  .card-row__accent {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: rgba(240,240,240,0.08);
+    margin-bottom: 20px;
+    transition: color 0.5s;
+  }
+
+  .card-row__footer {
+    font-family: var(--font-ui, monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--color-text-gold, #C4A35A);
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease 0.15s;
+  }
+
+  /* Hover + scroll reveals */
+  .card-row:hover .card-row__label,
+  .card-row.revealed .card-row__label { color: var(--color-text-gold, #C4A35A); }
+
+  .card-row:hover .card-row__rule,
+  .card-row.revealed .card-row__rule { background: linear-gradient(to right, var(--color-text-gold, #C4A35A), transparent); }
+
+  .card-row:hover .card-row__title,
+  .card-row.revealed .card-row__title { color: var(--color-text, #F0EAD6); }
+
+  .card-row:hover .card-row__hook,
+  .card-row.revealed .card-row__hook { color: var(--color-text-gold, #C4A35A); }
+
+  .card-row:hover .card-row__body,
+  .card-row.revealed .card-row__body { color: rgba(240,234,214,0.75); }
+
+  .card-row:hover .card-row__accent,
+  .card-row.revealed .card-row__accent { color: var(--color-text, #F0EAD6); }
+
+  .card-row:hover .card-row__footer,
+  .card-row.revealed .card-row__footer { opacity: 0.8; transform: translateY(0); }
+
+  /* Media */
+  .card-row__img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 2px;
+    border: 1px solid #1a1a1a;
+    background: #111;
+    opacity: 0.12;
+    filter: grayscale(100%) brightness(0.15);
+    transition: all 0.7s ease;
+  }
+
+  .card-row:hover .card-row__img,
+  .card-row.revealed .card-row__img {
+    opacity: 0.85;
+    filter: grayscale(30%) brightness(0.75);
+    border-color: rgba(196,163,90,0.3);
+  }
+
+  /* Corner accents */
+  .card-row__corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .card-row__corner--tl {
+    top: -4px;
+    left: -4px;
+    border-top: 1px solid var(--color-text-gold, #C4A35A);
+    border-left: 1px solid var(--color-text-gold, #C4A35A);
+  }
+
+  .card-row__corner--br {
+    bottom: -4px;
+    right: -4px;
+    border-bottom: 1px solid var(--color-text-gold, #C4A35A);
+    border-right: 1px solid var(--color-text-gold, #C4A35A);
+  }
+
+  .card-row:hover .card-row__corner,
+  .card-row.revealed .card-row__corner { opacity: 0.6; }
+
+  /* Side bars */
+  .card-row__sidebar {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--color-text-gold, #C4A35A), transparent);
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+
+  .card-row__sidebar--left { left: -20px; }
+  .card-row__sidebar--right { right: -20px; }
+  .card-row:hover .card-row__sidebar,
+  .card-row.revealed .card-row__sidebar { opacity: 0.4; }
+
+  /* ─── VALUES ─── */
   .about__values {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    padding: 0 clamp(1rem, 4vw, 3rem);
   }
 
   .about__value {
@@ -302,124 +408,92 @@ const footprints = [
     color: var(--color-text-muted);
   }
 
-  .about__accent {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(242, 111, 37, 0.08), transparent 70%);
-    filter: blur(60px);
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  /* Mobile: Stack vertically */
+  /* ─── MOBILE ─── */
   @media (max-width: 768px) {
-    .about__trail {
-      gap: 2rem;
+    .card-row {
+      flex-direction: column !important;
+      gap: 24px;
+      padding: 16px;
     }
 
-    .trail__step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 1rem;
-      padding: 0;
+    .card-row--left,
+    .card-row--right,
+    .card-row--left-offset {
+      margin: 0 auto;
     }
 
-    .trail__step--left .trail__content,
-    .trail__step--right .trail__content {
-      justify-self: center;
-    }
-
-    .trail__step--left .trail__footprint,
-    .trail__step--right .trail__footprint {
-      justify-self: center;
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    .trail__step--right .trail__footprint {
-      grid-row: auto;
-    }
-
-    .trail__footprint {
-      width: 100px;
-      height: 140px;
-      transform: none;
-    }
-
-    .trail__step--left .footprint__img,
-    .trail__step--right .footprint__img {
-      transform: rotate(180deg);
-    }
-
-    /* Alternate rotation for walking effect on mobile */
-    .trail__step:nth-child(2) .footprint__img,
-    .trail__step:nth-child(4) .footprint__img {
-      transform: rotate(180deg) rotate(-25deg);
-    }
-
-    .trail__content {
-      max-width: 100%;
-      padding: 1.25rem 1.5rem;
-    }
-
-    .trail__heading {
-      font-size: 1rem;
-    }
-
-    .trail__text {
-      font-size: 0.9rem;
-    }
-
-    .about__grave-divider {
+    .card-row__img {
       height: 200px;
-      margin: 2rem auto;
     }
 
-    .about__grave-img {
-      height: 120vw;
-    }
+    .card-row__sidebar { display: none; }
   }
 
-  /* Reduced motion */
+  /* Touch devices: show cards by default (no hover) */
+  @media (pointer: coarse) {
+    .spotlight-zone__glow,
+    .spotlight-zone__darkness {
+      display: none;
+    }
+
+    .card-row__label { color: var(--color-text-gold, #C4A35A); }
+    .card-row__rule { background: linear-gradient(to right, var(--color-text-gold, #C4A35A), transparent); }
+    .card-row__title { color: var(--color-text, #F0EAD6); }
+    .card-row__hook { color: var(--color-text-gold, #C4A35A); }
+    .card-row__body { color: rgba(240,234,214,0.75); }
+    .card-row__accent { color: var(--color-text, #F0EAD6); }
+    .card-row__footer { opacity: 0.8; transform: translateY(0); }
+    .card-row__img { opacity: 0.85; filter: grayscale(30%) brightness(0.75); border-color: rgba(196,163,90,0.3); }
+    .card-row__corner { opacity: 0.6; }
+    .card-row__sidebar { opacity: 0.4; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .trail__step {
-      opacity: 1;
-      transform: none;
-      transition: none;
+    .spotlight-zone__glow,
+    .spotlight-zone__darkness {
+      display: none;
     }
   }
 </style>
 
 <script>
-  function initScrollReveal() {
-    const steps = document.querySelectorAll('[data-reveal]');
+  function initSpotlight() {
+    const zone = document.getElementById('spotlight-zone');
+    if (!zone) return;
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      steps.forEach(step => step.classList.add('revealed'));
-      return;
-    }
+    // Mouse spotlight (supplementary theatrical effect)
+    zone.addEventListener('mousemove', (e) => {
+      const rect = zone.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      zone.style.setProperty('--sx', x + 'px');
+      zone.style.setProperty('--sy', y + 'px');
+    });
+
+    // Scroll-based reveal (primary mechanism)
+    const cards = zone.querySelectorAll('.card-row');
+    let revealIndex = 0;
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
+          const card = entry.target as HTMLElement;
+          const delay = revealIndex * 100;
+          revealIndex++;
+          setTimeout(() => card.classList.add('revealed'), delay);
+          observer.unobserve(card);
         }
       });
-    }, {
-      threshold: 0.2,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    }, { threshold: 0.15 });
 
-    steps.forEach(step => observer.observe(step));
+    cards.forEach(card => observer.observe(card));
+
+    // Pause autoplay videos if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      zone.querySelectorAll('video[autoplay]').forEach(v => (v as HTMLVideoElement).pause());
+    }
   }
 
-  initScrollReveal();
-  document.addEventListener('astro:page-load', initScrollReveal);
+  initSpotlight();
+  document.addEventListener('astro:page-load', initSpotlight);
 </script>
