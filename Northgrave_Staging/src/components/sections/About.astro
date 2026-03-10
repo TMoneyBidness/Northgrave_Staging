@@ -172,8 +172,8 @@ const {
     pointer-events: none;
     z-index: 3;
     background:
-      radial-gradient(circle 600px at var(--sx, 50%) var(--sy, 50%), rgba(196,163,90,0.09) 0%, rgba(196,163,90,0.02) 35%, transparent 65%),
-      radial-gradient(circle 300px at var(--sx, 50%) var(--sy, 50%), rgba(240,234,214,0.06) 0%, transparent 100%);
+      radial-gradient(circle 600px at var(--sx, 50%) var(--sy, 50%), rgba(196,69,54,0.09) 0%, rgba(196,69,54,0.02) 35%, transparent 65%),
+      radial-gradient(circle 300px at var(--sx, 50%) var(--sy, 50%), rgba(232,93,76,0.06) 0%, transparent 100%);
   }
 
   .spotlight-zone__darkness {
@@ -222,7 +222,7 @@ const {
   .card-row__label {
     font-size: 0.6875rem;
     letter-spacing: 0.25em;
-    color: rgba(196,163,90,0.2);
+    color: rgba(196,69,54,0.2);
     font-family: var(--font-ui, monospace);
     transition: color 0.4s;
   }
@@ -238,7 +238,7 @@ const {
     font-family: var(--font-display);
     font-size: clamp(1.5rem, 3vw, 2rem);
     letter-spacing: 0.15em;
-    color: rgba(240,240,240,0.12);
+    color: rgba(232,93,76,0.12);
     text-transform: uppercase;
     font-weight: 600;
     transition: color 0.5s;
@@ -248,7 +248,7 @@ const {
   .card-row__hook {
     font-family: var(--font-body);
     font-size: 1rem;
-    color: rgba(196,163,90,0.15);
+    color: rgba(232,93,76,0.15);
     font-style: italic;
     margin-bottom: 20px;
     transition: color 0.4s;
@@ -256,7 +256,7 @@ const {
 
   .card-row__body {
     font-family: var(--font-body);
-    font-size: 0.9375rem;
+    font-size: 1rem;
     line-height: 1.8;
     color: rgba(240,234,214,0.08);
     margin: 0 0 20px;
@@ -265,7 +265,7 @@ const {
 
   .card-row__accent {
     font-family: var(--font-body);
-    font-size: 0.9375rem;
+    font-size: 1rem;
     font-weight: 600;
     color: rgba(240,240,240,0.08);
     margin-bottom: 20px;
@@ -276,7 +276,7 @@ const {
     font-family: var(--font-ui, monospace);
     font-size: 0.75rem;
     letter-spacing: 0.2em;
-    color: var(--color-text-gold, #C4A35A);
+    color: var(--color-ember);
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(10px);
@@ -285,16 +285,16 @@ const {
 
   /* Hover + scroll reveals */
   .card-row:hover .card-row__label,
-  .card-row.revealed .card-row__label { color: var(--color-text-gold, #C4A35A); }
+  .card-row.revealed .card-row__label { color: var(--color-ember); }
 
   .card-row:hover .card-row__rule,
-  .card-row.revealed .card-row__rule { background: linear-gradient(to right, var(--color-text-gold, #C4A35A), transparent); }
+  .card-row.revealed .card-row__rule { background: linear-gradient(to right, var(--color-ember), transparent); }
 
   .card-row:hover .card-row__title,
-  .card-row.revealed .card-row__title { color: var(--color-text, #F0EAD6); }
+  .card-row.revealed .card-row__title { color: var(--color-ember-core); }
 
   .card-row:hover .card-row__hook,
-  .card-row.revealed .card-row__hook { color: var(--color-text-gold, #C4A35A); }
+  .card-row.revealed .card-row__hook { color: var(--color-ember-core); }
 
   .card-row:hover .card-row__body,
   .card-row.revealed .card-row__body { color: rgba(240,234,214,0.75); }
@@ -322,7 +322,7 @@ const {
   .card-row.revealed .card-row__img {
     opacity: 0.85;
     filter: grayscale(30%) brightness(0.75);
-    border-color: rgba(196,163,90,0.3);
+    border-color: rgba(196,69,54,0.3);
   }
 
   /* Corner accents */
@@ -337,15 +337,15 @@ const {
   .card-row__corner--tl {
     top: -4px;
     left: -4px;
-    border-top: 1px solid var(--color-text-gold, #C4A35A);
-    border-left: 1px solid var(--color-text-gold, #C4A35A);
+    border-top: 1px solid var(--color-ember);
+    border-left: 1px solid var(--color-ember);
   }
 
   .card-row__corner--br {
     bottom: -4px;
     right: -4px;
-    border-bottom: 1px solid var(--color-text-gold, #C4A35A);
-    border-right: 1px solid var(--color-text-gold, #C4A35A);
+    border-bottom: 1px solid var(--color-ember);
+    border-right: 1px solid var(--color-ember);
   }
 
   .card-row:hover .card-row__corner,
@@ -357,7 +357,7 @@ const {
     top: 20px;
     bottom: 20px;
     width: 2px;
-    background: linear-gradient(to bottom, transparent, var(--color-text-gold, #C4A35A), transparent);
+    background: linear-gradient(to bottom, transparent, var(--color-ember), transparent);
     opacity: 0;
     transition: opacity 0.6s;
   }
@@ -436,14 +436,14 @@ const {
       display: none;
     }
 
-    .card-row__label { color: var(--color-text-gold, #C4A35A); }
-    .card-row__rule { background: linear-gradient(to right, var(--color-text-gold, #C4A35A), transparent); }
-    .card-row__title { color: var(--color-text, #F0EAD6); }
-    .card-row__hook { color: var(--color-text-gold, #C4A35A); }
+    .card-row__label { color: var(--color-ember); }
+    .card-row__rule { background: linear-gradient(to right, var(--color-ember), transparent); }
+    .card-row__title { color: var(--color-ember-core); }
+    .card-row__hook { color: var(--color-ember-core); }
     .card-row__body { color: rgba(240,234,214,0.75); }
     .card-row__accent { color: var(--color-text, #F0EAD6); }
     .card-row__footer { opacity: 0.8; transform: translateY(0); }
-    .card-row__img { opacity: 0.85; filter: grayscale(30%) brightness(0.75); border-color: rgba(196,163,90,0.3); }
+    .card-row__img { opacity: 0.85; filter: grayscale(30%) brightness(0.75); border-color: rgba(196,69,54,0.3); }
     .card-row__corner { opacity: 0.6; }
     .card-row__sidebar { opacity: 0.4; }
   }
